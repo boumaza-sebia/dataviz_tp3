@@ -96,13 +96,13 @@
 
           // find permet d'eviter de faire une boucle sur toutes les donnees 
           // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find#find_an_object_in_an_array_by_one_of_its_properties
-          var jourDepChoisi = cleanData.find(function(row) {
-            return (row["jour"] == jourChoisi && row["dep"] == departement); // find renvoie la ligne du tableau si la fonction qu'on lui passe en argument renvoie True.    
+          var joursDepChoisi = cleanData.filter(function(row) {
+            return (row["dep"] == departement); // find renvoie la ligne du tableau si la fonction qu'on lui passe en argument renvoie True.    
           })
-          json.features[j].properties.value = parseInt(jourDepChoisi.hosp);
+          json.features[j].properties.value = Object.values(joursDepChoisi[3]);
         }
 
-
+      
         // on dessine
         g.selectAll("path")
           .data(json.features)
@@ -111,7 +111,7 @@
           .attr("d", path)
           .style("fill", function(d) {
             //on prend la valeur recupere plus haut
-            var value = d.properties.value;
+            var value = d.properties.value[0];
             if (value) {
               return color(value);
             } else {
