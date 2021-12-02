@@ -94,7 +94,13 @@
           .style("fill", function(d) {
             //on prend la valeur recupere plus haut
             var value = d.properties.value;
-            return color(value);
+            if (value) {
+              console.log(value)
+              return color(value);
+            } else {
+              // si pas de valeur alors en gris
+              return "#ccc";
+            }
                   
           });
       });
