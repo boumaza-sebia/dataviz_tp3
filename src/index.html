@@ -82,7 +82,7 @@
             return (row["jour"] == jourChoisi && row["dep"] == departement); // find renvoie la ligne du tableau si la fonction qu'on lui passe en argument renvoie True.    
           })
           json.features[j].properties.value = jourDepChoisi.hosp;
-          console.log(jourDepChoisi.hosp)
+          //console.log(jourDepChoisi.hosp)
         }
 
 
@@ -92,10 +92,11 @@
           .join("path")
           .attr("d", path)
           .style("fill", function(d) {
-              //on prend la valeur recupere plus haut
-              var value = d.properties.value;
+            //on prend la valeur recupere plus haut
+            var value = d.properties.value;
 
-              if (value) {
+            if (value) {
+              console.log(value)
               return color(value);
             } else {
               // si pas de valeur alors en gris
