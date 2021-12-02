@@ -75,9 +75,8 @@
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
       var cleanData = data.filter(function(row) {
         return (row["sexe"] == 0);
-      } ); // TODO ne garder que les lignes ou (sexe == 0)
+      } );
 
-      //color.domain([0, 2000]);
       //Set input domain for color scale
       color.domain([
         d3.min(data, function (d) {
@@ -101,7 +100,6 @@
             return (row["jour"] == jourChoisi && row["dep"] == departement); // find renvoie la ligne du tableau si la fonction qu'on lui passe en argument renvoie True.    
           })
           json.features[j].properties.value = parseInt(jourDepChoisi.hosp);
-          //console.log(jourDepChoisi.hosp)
         }
 
 
@@ -115,7 +113,6 @@
             //on prend la valeur recupere plus haut
             var value = d.properties.value;
             if (value) {
-              console.log(value)
               return color(value);
             } else {
               // si pas de valeur alors en gris
@@ -127,7 +124,7 @@
           	// on recupere la position de la souris, 
             // e est l'object event d
             var mousePosition = [e.x, e.y];
-            console.log(mousePosition);
+            //console.log(mousePosition);
 			      // on affiche le toolip
             tooltip.classed('hidden', false)
   		            // on positionne le tooltip en fonction 
