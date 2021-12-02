@@ -86,7 +86,7 @@
 
 
         // on dessine
-        svg.selectAll("path")
+        g.selectAll("path")
           .data(json.features)
           .join("path")
           .attr("d", path)
