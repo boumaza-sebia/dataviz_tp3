@@ -99,7 +99,8 @@
           var jourDepChoisi = cleanData.filter(function(row) {
             return (row["dep"] == departement); // find renvoie la ligne du tableau si la fonction qu'on lui passe en argument renvoie True.    
           })
-          json.features[j].properties.value = Object.values(jourDepChoisi[3]);
+          console.log(jourDepChoisi)
+          json.features[j].properties.value = Object.values(jourDepChoisi["hosp"]);
         }
 
         
