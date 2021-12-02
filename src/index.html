@@ -48,56 +48,54 @@
 
     var path = d3.geoPath().projection(projection);
 
-    // Chargement des donnees
-    d3.csv("../data/covid-06-11-2021.csv").then(function (data) {
-      //Set input domain for color scale
-      color.domain([
-        d3.min(data, function (d) {
-          return d.value;
-        }),
-        d3.max(data, function (d) {
-          return d.value;
-        })
-      ]);
 
-      d3.json("../data/departements-version-simplifiee.geojson").then(function (json) {
-        //On fusionne les donnees avec le GeoJSON
-        for (var i = 0; i < data.length; i++) {
-          //Nom du département
-          var dataDep = data[i].dep;
-          //console.log(dataDep);
+    var jourChoisi = "2021-09-12" // pour demarrer on code en dur un jour a afficher
 
-          //Valeur associee au département
-          var dataValue = parseFloat(data[i].hosp);
+    d3.csv("../data/covid.csv").then(function(data) {
 
-          //Recherche de l'etat dans le GeoJSON
-          for (var j = 0; j < json.features.length; j++) {
-            var jsonDep = json.features[j].properties.code;
-            if (dataDep == jsonDep) {
-              //On injecte la valeur de l'Etat dans le json
-              json.features[j].properties.value = dataValue;
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+      var cleanData = data.filter(function(row) {
+        return (row["sexe"] == 0);
+      } ); // TODO ne garder que les lignes ou (sexe == 0)
 
-              //Pas besoin de chercher plus loin
-              break;
-            }
-          }
+      color.domain([0, 2000]);
+
+      d3.json("../data/departements-version-simplifiee.geojson").then(function(json) {
+        //On fusionne les donnees avec le GeoJSON des departements
+
+        //On parcours les departements du GeoJSON un par un
+        for (var j = 0; j < json.features.length; j++) {
+          var departement = json.features[j].properties.code // TODO
+
+          // find permet d'eviter de faire une boucle sur toutes les donnees 
+          // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find#find_an_object_in_an_array_by_one_of_its_properties
+          var jourDepChoisi = cleanData.find(function(row) {
+            return (row["jour"] == jourChoisi && row["dep"] == departement); // find renvoie la ligne du tableau si la fonction qu'on lui passe en argument renvoie True.    
+          })
+          json.features[j].properties.value = jourDepChoisi.hosp;
         }
-        g.selectAll("path")
+
+
+        // on dessine
+        svg.selectAll("path")
           .data(json.features)
           .join("path")
           .attr("d", path)
-          .style("fill", function (d) {
-            //on prend la valeur recupere plus haut
-            var value = d.properties.value;
+          .style("fill", function(d) {
+              //on prend la valeur recupere plus haut
+              var value = d.properties.value;
 
-            if (value) {
+              if (value) {
               return color(value);
             } else {
               // si pas de valeur alors en gris
               return "#ccc";
             }
+                  
           });
       });
     });
+
+
   </script>
 </body>
