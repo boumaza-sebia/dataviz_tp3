@@ -112,6 +112,7 @@
           .style("fill", function(d) {
             //on prend la valeur recupere plus haut
             var value = d.properties.value[0];
+            console.log(value)
             if (value) {
               return color(value);
             } else {
