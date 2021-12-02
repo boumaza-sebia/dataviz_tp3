@@ -62,10 +62,10 @@
       //Set input domain for color scale
       color.domain([
         d3.min(data, function (d) {
-          return parseInt(d.value);
+          return parseInt(d.hosp);
         }),
         d3.max(data, function (d) {
-          return parseInt(d.value);
+          return parseInt(d.hosp);
         })
       ]);
 
