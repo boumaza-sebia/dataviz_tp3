@@ -23,6 +23,10 @@
         opacity: 0.9;
         position: absolute;
     }
+    .province {
+        stroke: #000;
+        stroke-width: 1px;
+    }
   </style>
 </head>
 
@@ -106,6 +110,7 @@
         g.selectAll("path")
           .data(json.features)
           .join("path")
+          .attr('class', 'province')
           .attr("d", path)
           .style("fill", function(d) {
             //on prend la valeur recupere plus haut
