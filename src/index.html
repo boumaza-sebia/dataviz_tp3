@@ -58,7 +58,16 @@
         return (row["sexe"] == 0);
       } ); // TODO ne garder que les lignes ou (sexe == 0)
 
-      color.domain([0, 2000]);
+      //color.domain([0, 2000]);
+      //Set input domain for color scale
+      color.domain([
+        d3.min(data, function (d) {
+          return d.value;
+        }),
+        d3.max(data, function (d) {
+          return d.value;
+        })
+      ]);
 
       d3.json("../data/departements-version-simplifiee.geojson").then(function(json) {
         //On fusionne les donnees avec le GeoJSON des departements
