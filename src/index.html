@@ -62,10 +62,10 @@
       //Set input domain for color scale
       color.domain([
         d3.min(data, function (d) {
-          return d.value;
+          return parseInt(d.value);
         }),
         d3.max(data, function (d) {
-          return d.value;
+          return parseInt(d.value);
         })
       ]);
 
@@ -81,7 +81,7 @@
           var jourDepChoisi = cleanData.find(function(row) {
             return (row["jour"] == jourChoisi && row["dep"] == departement); // find renvoie la ligne du tableau si la fonction qu'on lui passe en argument renvoie True.    
           })
-          json.features[j].properties.value = jourDepChoisi.hosp;
+          json.features[j].properties.value = parseInt(jourDepChoisi.hosp);
           //console.log(jourDepChoisi.hosp)
         }
 
