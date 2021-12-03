@@ -135,9 +135,9 @@
         })
       ]);
 
-      myjson = d3.json("../data/departements-version-simplifiee.geojson").then(function(json) {
+      d3.json("../data/departements-version-simplifiee.geojson").then(function(json) {
         //On fusionne les donnees avec le GeoJSON des departements
-
+        myjson = json
         //On parcours les departements du GeoJSON un par un
         for (var j = 0; j < json.features.length; j++) {
           var departement = json.features[j].properties.code // TODO
@@ -153,8 +153,8 @@
 
         }
         //console.log(myjson);
-        //drawMap(0);
-      }).then(drawMap(0));
+        drawMap(0);
+      });
     });
 
     //console.log(myjson);
