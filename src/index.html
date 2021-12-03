@@ -100,7 +100,7 @@
             return (row["dep"] == departement); // find renvoie la ligne du tableau si la fonction qu'on lui passe en argument renvoie True.    
           })
       
-          json.features[j].properties.value = parseInt(jourDepChoisi["hosp"]);
+          json.features[j].properties.value = jourDepChoisi["hosp"];
 
         }
 
@@ -113,7 +113,7 @@
           .attr("d", path)
           .style("fill", function(d) {
             //on prend la valeur recupere plus haut
-            var value = d.properties.value;
+            var value = d.properties.value[0].hosp;
             console.log(value)
             if (value) {
               return color(value);
