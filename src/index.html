@@ -105,44 +105,47 @@
 
         }
 
+        function drawMap(currentDay) {
         
-        // on dessine
-        g.selectAll("path")
-          .data(json.features)
-          .join("path")
-          .attr('class', 'province')
-          .attr("d", path)
-          .style("fill", function(d) {
-            //on prend la valeur recupere plus haut
-            var value = d.properties.value[0].hosp;
-            //console.log(value)
-            if (value) {
-              return color(value);
-            } else {
-              // si pas de valeur alors en gris
-              return "#ccc";
-            }
+          // on dessine
+          g.selectAll("path")
+            .data(json.features)
+            .join("path")
+            .attr('class', 'province')
+            .attr("d", path)
+            .style("fill", function(d) {
+             //on prend la valeur recupere plus haut
+              var value = d.properties.value[currentDay].hosp;
+              //console.log(value)
+              if (value) {
+                return color(value);
+              } else {
+                // si pas de valeur alors en gris
+                return "#ccc";
+              }
                   
-          })
-          .on('mousemove', function(e, d) {
-          	// on recupere la position de la souris, 
-            // e est l'object event d
-            var mousePosition = [e.x, e.y];
-            //console.log(mousePosition);
-			      // on affiche le toolip
-            tooltip.classed('hidden', false)
-  		            // on positionne le tooltip en fonction 
-	    	          // de la position de la souris
-                  .attr('style', 'left:' + (mousePosition[0] + 15) +
+            })
+            .on('mousemove', function(e, d) {
+          	  // on recupere la position de la souris, 
+              // e est l'object event d
+              var mousePosition = [e.x, e.y];
+              //console.log(mousePosition);
+			        // on affiche le toolip
+              tooltip.classed('hidden', false)
+  		              // on positionne le tooltip en fonction 
+	    	            // de la position de la souris
+                    .attr('style', 'left:' + (mousePosition[0] + 15) +
                       'px; top:' + (mousePosition[1] - 35) + 'px')
-                  // on recupere le nom de l'etat 
-                  .html(d.properties.nom + ": " + d.properties.value);
-                })
-          .on('mouseout', function() {
-			             // on cache le toolip
-                    tooltip.classed('hidden', true);
-          });
-          
+                    // on recupere le nom de l'etat 
+                    .html(d.properties.nom + ": " + d.properties.value);
+              })
+            .on('mouseout', function() {
+			        // on cache le toolip
+              tooltip.classed('hidden', true);
+            });
+        }
+
+        drawMap(0);
       });
     });
 
