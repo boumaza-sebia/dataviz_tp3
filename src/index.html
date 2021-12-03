@@ -132,7 +132,7 @@
   
           // Ajout de texte
           d3.select('#day').html(d.properties.value[currentDay].jour);
-        }
+      }
 
       d3.json("../data/departements-version-simplifiee.geojson").then(function(json) {
         //On fusionne les donnees avec le GeoJSON des departements
