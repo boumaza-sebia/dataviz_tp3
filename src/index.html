@@ -149,15 +149,11 @@
           })
       
           json.features[j].properties.value = jourDepChoisi;
-          //console.log(json.features[j].properties.value)
 
         }
-        //console.log(myjson);
         drawMap(0);
       });
     });
-
-    //console.log(myjson);
 
     d3.select("#slider").on("input", function() {
           drawMap(+this.value);
