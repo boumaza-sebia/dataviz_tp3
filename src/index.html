@@ -100,8 +100,8 @@
             return (row["dep"] == departement); // find renvoie la ligne du tableau si la fonction qu'on lui passe en argument renvoie True.    
           })
           var tab = []
-          for (var j = 0; j < jourDepChoisi.length; j++) {
-              tab.push(jourDepChoisi[j].hosp);
+          for (var i = 0; i < jourDepChoisi.length; j++) {
+              tab.push(jourDepChoisi[i].hosp);
           }
           json.features[j].properties.value = tab;
           console.log(json.features[j].properties.value)
