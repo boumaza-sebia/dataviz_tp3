@@ -130,8 +130,8 @@
             tooltip.classed('hidden', true);
           });
   
-          // Ajout de texte
-          d3.select('#day').html(d.properties.value[currentDay].jour);
+        // Ajout de texte
+        d3.select('#day').html(d.properties.value[currentDay].jour);
       }
 
       d3.json("../data/departements-version-simplifiee.geojson").then(function(json) {
@@ -153,11 +153,13 @@
         }
         drawMap(0);
       });
+
+      d3.select("#slider").on("input", function() {
+          drawMap(+this.value);
+      });
     });
 
-    d3.select("#slider").on("input", function() {
-          drawMap(+this.value);
-    });
+   
 
   </script>
 </body>
