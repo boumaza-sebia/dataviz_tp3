@@ -111,9 +111,9 @@
 			      // on cache le toolip
             tooltip.classed('hidden', true);
           });
-  
-        // Ajout de texte
-        d3.select('#day').html(function(e, d){console.log(d)});
+        
+          // Ajout de texte
+        d3.select('#day').data(myjson.features).html(function(e, d){console.log(d.properties.value)});
     }
 
 
