@@ -101,7 +101,7 @@
           })
       
           json.features[j].properties.value = jourDepChoisi;
-          console.log(json.features[j].properties.value)
+          //console.log(json.features[j].properties.value)
 
         }
 
@@ -115,7 +115,7 @@
           .style("fill", function(d) {
             //on prend la valeur recupere plus haut
             var value = d.properties.value[0].hosp;
-            console.log(value)
+            //console.log(value)
             if (value) {
               return color(value);
             } else {
