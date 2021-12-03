@@ -30,7 +30,7 @@
 </head>
 
 <body>
-  
+
   <div>
     <input id="slider" type="range" value="0" min="0" max="178" step="1" /><br/>
     <span id="day">day</span>
@@ -148,11 +148,18 @@
 			        // on cache le toolip
               tooltip.classed('hidden', true);
             });
+          
+          // Ajout de texte
+          d3.select('#day').html( d.properties.value[currentDay].jour);
         }
-        drawMap(1);
+        //drawMap(1);
+        
       });
     });
-
+    
+    d3.select("#slider").on("input", function() {
+          drawMap(+this.value);
+    });
 
   </script>
 </body>
