@@ -96,7 +96,7 @@
 
           // find permet d'eviter de faire une boucle sur toutes les donnees 
           // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find#find_an_object_in_an_array_by_one_of_its_properties
-          var jourDepChoisi = cleanData.find(function(row) {
+          var jourDepChoisi = cleanData.filter(function(row) {
             return (row["dep"] == departement); // find renvoie la ligne du tableau si la fonction qu'on lui passe en argument renvoie True.    
           })
       
