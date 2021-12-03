@@ -152,13 +152,12 @@
           // Ajout de texte
           d3.select('#day').html( d.properties.value[currentDay].jour);
         }
-        //drawMap(1);
-        
-      });
-    });
-    
-    d3.select("#slider").on("input", function() {
+        drawMap(0);
+
+        d3.select("#slider").on("input", function() {
           drawMap(+this.value);
+        });
+      });
     });
 
   </script>
