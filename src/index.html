@@ -113,7 +113,7 @@
           });
         
           // Ajout de texte
-        d3.select('#day').data(myjson.features).html(function(e, d){console.log(e)});
+        d3.select('#day').data(myjson.features).html(function(d){console.log(d.projection.value[currentDay].jour)});
     }
 
 
